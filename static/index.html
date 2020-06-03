@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IoT-Final</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.0/animate.min.css">
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <div id="app">
+        <v-app dark>
+            <v-content class="align-center">
+                <transition mode="out-in" enter-active-class="animate__animated animate__bounceIn"
+                    leave-active-class="animate__animated animate__bounceOut" @after-enter="afterEnter">
+                    <v-card dark width="400" class="mx-auto pa-4 unselectable" style="border-radius: 8px;"
+                        v-if="!unlocked">
+                        <v-card-title class="headline justify-center">Validation</v-card-title>
+                        <v-text-field dark required :error-messages="errorMsg" label="Password" type="password"
+                            v-model="password"></v-text-field>
+                        <div style="text-align: center;">
+                            <div class="laser__container unselectable">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                <v-btn depressed color="transparent" class="white--text" :loading="loading"
+                                    @click="unlock">Unlock
+                                </v-btn>
+                            </div>
+                        </div>
+                    </v-card>
+
+                    <div v-else>
+                        <v-card dark width="400" class="mx-auto pa-4 unselectable text-center"
+                            style="border-radius: 8px; z-index: 1;">
+                            <div>
+                                <div class="padlock mx-auto">
+                                    <div class="keyhole"></div>
+                                </div>
+                            </div>
+
+                            <v-card-text class="display-1 green--text text--accent-4">Unlocked!</v-card-text>
+                        </v-card>
+                    </div>
+                </transition>
+            </v-content>
+
+
+        </v-app>
+
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
